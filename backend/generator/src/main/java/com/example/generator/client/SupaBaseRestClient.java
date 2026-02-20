@@ -8,7 +8,6 @@ import org.springframework.web.reactive.function.client.WebClient;
 import java.util.UUID;
 
 
-//TODO: Figure out configuration issues next time and then test out the actual posting to the bucket
 @Component
 public class SupaBaseRestClient {
     
@@ -34,7 +33,7 @@ public class SupaBaseRestClient {
                         .path("/storage/v1/object/" + objectPath)
                         .build())
                 .contentType(MediaType.IMAGE_PNG)
-                .header("x-upsert", "false") // change to true if you want to overwrite files
+                .header("x-upsert", "false")
                 .bodyValue(imageBytes)
                 .retrieve()
                 .bodyToMono(String.class)

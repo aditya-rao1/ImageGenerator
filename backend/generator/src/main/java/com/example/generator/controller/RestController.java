@@ -36,21 +36,21 @@ public class RestController {
     }
 
     @GetMapping("/generate-image")
-    public ResponseEntity<byte[]> getImageBytes(@RequestParam String prompt) { // As a note this is just a test run of the getting the imageByes to make sure the generator, everything else works
+    public ResponseEntity<byte[]> getImageBytes(@RequestParam String prompt) {
         byte[] imageBytes = supabaseService.getImage(prompt);
         HttpHeaders headers = new HttpHeaders();
-        headers.setContentType(MediaType.IMAGE_PNG); // or JPEG depending on what you expect
+        headers.setContentType(MediaType.IMAGE_PNG); 
         headers.setContentLength(imageBytes.length);
         return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
     }
 
     @PostMapping("/post-image")
-    public String saveToSupa(@RequestParam(required = false) String prompt) throws IOException { //TODO: Implement the full flow of the application 
+    public String saveToSupa(@RequestParam(required = false) String prompt) throws IOException {
         byte[] imageBytes;
         String sampleImagePath = "C:/Users/raoad/OneDrive/Documents/PersonalProjects/ImageGenerator/lion.png";
 
         if(useActualModel) imageBytes = supabaseService.getImage(prompt);
-        else imageBytes = convertImagePathToBytes(sampleImagePath); // when not testing the ai model go ahead and just flip the boolean and use the other image as a placeholder
+        else imageBytes = convertImagePathToBytes(sampleImagePath); 
         return supabaseService.saveImage(imageBytes);
     }
     

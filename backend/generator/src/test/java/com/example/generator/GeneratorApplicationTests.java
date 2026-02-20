@@ -10,7 +10,7 @@ import org.springframework.boot.test.context.SpringBootTest;
 @SpringBootTest
 @EnableAutoConfiguration(exclude = {
         DataSourceAutoConfiguration.class,
-        DataSourceTransactionManagerAutoConfiguration.class, //TODO when it becomes necessary make sure to delete this when the database has gone away
+        DataSourceTransactionManagerAutoConfiguration.class, 
         HibernateJpaAutoConfiguration.class
 })
 class GeneratorApplicationTests {
